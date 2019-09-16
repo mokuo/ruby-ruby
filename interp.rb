@@ -7,6 +7,7 @@ def evaluate(tree, env)
   when 'lit'
     tree[1]
   when '+'
+    env['plus_count'] = env['plus_count'] + 1
     evaluate(tree[1], env) + evaluate(tree[2], env)
   when '-'
     evaluate(tree[1], env) - evaluate(tree[2], env)
