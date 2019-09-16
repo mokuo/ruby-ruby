@@ -16,6 +16,14 @@ def evaluate(tree)
     evaluate(tree[1]) / evaluate(tree[2])
   when 'func_call' # 仮の実装
     p(evaluate(tree[2]))
+  when 'stmts'
+    i = 1
+    last = nil
+    until tree[i].nil?
+      last = evaluate(tree[i])
+      i += 1
+    end
+    last
   end
 end
 
