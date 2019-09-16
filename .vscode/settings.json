@@ -1,4 +1,9 @@
 {
     "editor.tabSize": 2,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveTimeout": 10000,
+    "editor.defaultFormatter": "misogi.ruby-rubocop",
+    "ruby.rubocop.executePath": "",
+    "ruby.rubocop.configFilePath": ".rubocop.yml",
+    "ruby.rubocop.onSave": true
 }
