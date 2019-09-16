@@ -3,4 +3,9 @@
 source 'https://rubygems.org'
 
 gem 'minruby'
-gem 'rubocop', require: false
+
+group :development do
+  gem 'guard'
+  gem 'guard-shell'
+  gem 'rubocop', require: false
+end
