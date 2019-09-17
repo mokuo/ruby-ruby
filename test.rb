@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-plus_count = 0
-x = 1 + 2 + 3
-p(plus_count)
-x = 1 + 2 + 3
-p(plus_count)
+if 0 == 0
+  p(42)
+else
+  p(43)
+end
