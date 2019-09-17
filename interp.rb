@@ -44,6 +44,8 @@ def evaluate(tree, env)
     else
       evaluate(tree[3], env)
     end
+  when 'while'
+    evaluate(tree[2], env) while evaluate(tree[1], env)
   end
 end
 
