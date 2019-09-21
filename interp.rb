@@ -31,8 +31,9 @@ def evaluate(tree, genv, lenv)
       args[i] = evaluate(tree [i + 2], genv, lenv)
       i = i + 1
     end
-    if mtd[0] == 'buildin'
-      # 埋める
+    mtd = genv[tree[1]]
+    if mtd[0] == 'builtin'
+      minruby_call(mtd[1], args)
     else
       # 埋める（次章）
     end
@@ -66,6 +67,6 @@ str = minruby_load
 
 tree = minruby_parse(str)
 
-genv = { 'p' => %w[builtin p] }
+genv = { "p" => ["builtin", "p"] } # rubocop:disable all
 lenv = {}
 evaluate(tree, genv, lenv)
