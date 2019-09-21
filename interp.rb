@@ -24,14 +24,24 @@ def evaluate(tree, genv, lenv)
     evaluate(tree[1], genv, lenv) < evaluate(tree[2], genv, lenv)
   when '>'
     evaluate(tree[1], genv, lenv) > evaluate(tree[2], genv, lenv)
-  when 'func_call' # 仮の実装
-    p(evaluate(tree[2], genv, lenv))
+  when 'func_call'
+    args = []
+    i = 0
+    while tree[i + 2]
+      args[i] = evaluate(tree [i + 2], genv, lenv)
+      i = i + 1
+    end
+    if mtd[0] == 'buildin'
+      # 埋める
+    else
+      # 埋める（次章）
+    end
   when 'stmts'
     i = 1
     last = nil
     while tree[i]
       last = evaluate(tree[i], genv, lenv)
-      i += 1
+      i = i + 1
     end
     last
   when 'var_assign'
@@ -56,5 +66,6 @@ str = minruby_load
 
 tree = minruby_parse(str)
 
+genv = { 'p' => %w[builtin p] }
 lenv = {}
 evaluate(tree, genv, lenv)
