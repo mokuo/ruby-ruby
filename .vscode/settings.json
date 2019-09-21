@@ -4,6 +4,6 @@
     "editor.formatOnSaveTimeout": 10000,
     "editor.defaultFormatter": "misogi.ruby-rubocop",
     "ruby.rubocop.executePath": "",
-    "ruby.rubocop.configFilePath": ".rubocop.yml",
+    "ruby.rubocop.configFilePath": "",
     "ruby.rubocop.onSave": true
 }
