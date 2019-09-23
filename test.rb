@@ -1,9 +1,17 @@
-def fib(x)
-  if x <= 1
-    x
+def even?(n)
+  if n == 0
+    true
   else
-    fib(x - 1) + fib(x - 2)
+    odd?(n - 1)
   end
 end
 
-p(fib(3))
+def odd?(n)
+  if n === 0
+    false
+  else
+    even?(n - 1)
+  end
+end
+
+p(even?(100))
