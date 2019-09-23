@@ -1,6 +1,8 @@
 AllCops:
   Exclude:
     - 'test.rb'
+    - 'fizzbuzz.rb'
+    - 'interp.rb'
 Style/SelfAssignment:
   Enabled: false
 Style/HashSyntax:

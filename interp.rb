@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'minruby'
 
 def evaluate(tree, genv, lenv)
@@ -20,6 +18,8 @@ def evaluate(tree, genv, lenv)
     evaluate(tree[1], genv, lenv)**evaluate(tree[2], genv, lenv)
   when '=='
     evaluate(tree[1], genv, lenv) == evaluate(tree[2], genv, lenv)
+  when '!='
+    evaluate(tree[1], genv, lenv) != evaluate(tree[2], genv, lenv)
   when '<'
     evaluate(tree[1], genv, lenv) < evaluate(tree[2], genv, lenv)
   when '>'
@@ -47,10 +47,9 @@ def evaluate(tree, genv, lenv)
       evaluate(tree[3], genv, lenv)
     end
   when 'while'
-    evaluate(tree[2], genv, lenv) while evaluate(tree[1], genv, lenv)
-  when 'while2'
-    evaluate(tree[2], genv, lenv)
-    evaluate(tree[2], genv, lenv) while evaluate(tree[1], genv, lenv)
+    while evaluate(tree[1], genv, lenv)
+      evaluate(tree[2], genv, lenv)
+    end
   when 'func_call'
     args = []
     i = 0
@@ -103,7 +102,7 @@ def evaluate(tree, genv, lenv)
   end
 end
 
-str = minruby_load
+str = minruby_load()
 
 tree = minruby_parse(str)
 
