@@ -107,6 +107,12 @@ str = minruby_load
 
 tree = minruby_parse(str)
 
-genv = { "p" => ["builtin", "p"] } # rubocop:disable all
+genv = {
+  'p' => ['builtin', 'p'],
+  'require' => ['builtin', 'require'],
+  'minruby_parse' => ['builtin', 'minruby_parse'],
+  'minruby_load' => ['builtin', 'minruby_load'],
+  'minruby_call' => ['builtin', 'minruby_call']
+}
 lenv = {}
 evaluate(tree, genv, lenv)
