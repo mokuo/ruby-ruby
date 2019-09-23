@@ -1,5 +1,9 @@
-def add(x, y)
-  x + y
+def fib(x)
+  if x <= 1
+    x
+  else
+    fib(x - 1) + fib(x - 2)
+  end
 end
 
-p(add(1, 1))
+p(fib(3))

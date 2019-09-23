@@ -24,6 +24,10 @@ def evaluate(tree, genv, lenv)
     evaluate(tree[1], genv, lenv) < evaluate(tree[2], genv, lenv)
   when '>'
     evaluate(tree[1], genv, lenv) > evaluate(tree[2], genv, lenv)
+  when '<='
+    evaluate(tree[1], genv, lenv) <= evaluate(tree[2], genv, lenv)
+  when '>='
+    evaluate(tree[1], genv, lenv) >= evaluate(tree[2], genv, lenv)
   when 'stmts'
     i = 1
     last = nil
