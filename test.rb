@@ -1,1 +1,5 @@
-p(1, 2, 3)
+def add(x, y)
+  x + y
+end
+
+p(add(1, 1))

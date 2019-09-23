@@ -24,19 +24,6 @@ def evaluate(tree, genv, lenv)
     evaluate(tree[1], genv, lenv) < evaluate(tree[2], genv, lenv)
   when '>'
     evaluate(tree[1], genv, lenv) > evaluate(tree[2], genv, lenv)
-  when 'func_call'
-    args = []
-    i = 0
-    while tree[i + 2]
-      args[i] = evaluate(tree [i + 2], genv, lenv)
-      i = i + 1
-    end
-    mtd = genv[tree[1]]
-    if mtd[0] == 'builtin'
-      minruby_call(mtd[1], args)
-    else
-      # 埋める（次章）
-    end
   when 'stmts'
     i = 1
     last = nil
@@ -46,9 +33,9 @@ def evaluate(tree, genv, lenv)
     end
     last
   when 'var_assign'
-    env[tree[1]] = evaluate(tree[2], genv, lenv)
+    lenv[tree[1]] = evaluate(tree[2], genv, lenv)
   when 'var_ref'
-    env[tree[1]]
+    lenv[tree[1]]
   when 'if'
     if evaluate(tree[1], genv, lenv)
       evaluate(tree[2], genv, lenv)
@@ -60,6 +47,27 @@ def evaluate(tree, genv, lenv)
   when 'while2'
     evaluate(tree[2], genv, lenv)
     evaluate(tree[2], genv, lenv) while evaluate(tree[1], genv, lenv)
+  when 'func_call'
+    args = []
+    i = 0
+    while tree[i + 2]
+      args[i] = evaluate(tree [i + 2], genv, lenv)
+      i = i + 1
+    end
+    mtd = genv[tree[1]]
+    if mtd[0] == 'builtin'
+      minruby_call(mtd[1], args)
+    else
+      params = mtd[1]
+      i = 0
+      while params[i]
+        lenv[params[i]] = args[i]
+        i = i + 1
+      end
+      evaluate(mtd[2], genv, lenv)
+    end
+  when 'func_def'
+    genv[tree[1]] = ['user_defined', tree[2], tree[3]]
   end
 end
 
